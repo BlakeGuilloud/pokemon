@@ -1,0 +1,17 @@
+.battle, .buttons {
+  display: flex;
+  justify-content: center; }
+
+.box img {
+  width: 200px; }
+
+.hidden {
+  display: none; }
+
+.landingPage {
+  height: 5000px;
+  background-color: blue;
+  width: 200px;
+  margin-top: 200px; }
+
+/*# sourceMappingURL=styles.css.map */
