@@ -1,7 +1,12 @@
 {
 "version": 3,
+<<<<<<< HEAD
 "mappings": "",
 "sources": [],
+=======
+"mappings": "AAAA,iBAAiB;EACf,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;;AAGzB,QAAS;EACP,KAAK,EAAE,KAAK;;AAGd,OAAQ;EACN,OAAO,EAAE,IAAI;;AAGf,YAAY;EACV,MAAM,EAAE,MAAM;EACd,gBAAgB,EAAE,IAAI;EACtB,KAAK,EAAE,KAAK;EACZ,UAAU,EAAE,KAAK",
+"sources": ["styles.scss"],
+>>>>>>> master
 "names": [],
 "file": "styles.css"
 }
