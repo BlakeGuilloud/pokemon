@@ -3,29 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <link href='https://fonts.googleapis.com/css?family=Fondamento' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="landingPage">
+    <h1>Your very own Pokemon Adventure is about to Begin!</h1>
+    <h3>Are you ready to choose your Pokemon?</h3>
+    <div class="nidoran">
+      <img src="http://img.pokemondb.net/artwork/nidoran-m.jpg" alt="">
+    </div>
+    <div class="confirm">
+      <button class ='yes'>Yes</button>
+      <button class="no">No</button>
+    </div>
+  </div>
 
-
-  <div class="battlefield ">
+  <div class="battlefield hidden">
+    <h1>Select Your Pokemon: </h1>
     <div class="battle">
-      <div class="box charmander">Charmander</div>
-      <div class="box squirtle">Squirtle</div>
-      <div class="box bulbasaur">Bulbasaur</div>
-      <div class="box mewtwo hidden">Bulbasaur</div>
+
     </div>
-    <div class="buttons">
-      <button class = 'a move'>A</button>
-      <button class = 'b move'>B</button>
-      <button class = 'c move'>C</button>
-      <button class = 'd move'>D</button>
+  </div>
+
+  <div class="showMatch hidden">
+
+    <div class="defenderSlot">
+      <div class="defenderHealth"></div>
     </div>
+    <div class="battleLog">
+      Select A Move!
+    </div>
+    <div class="attackerSlot">
+      <div class="attackerHealth"></div>
+      <div class="buttons">
+        <button class = 'a move'>A</button>
+        <button class = 'b move'>B</button>
+        <button class = 'c move'>C</button>
+        <button class = 'd move'>D</button>
+      </div>
+    </div>
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js" charset="utf-8"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.js" charset="utf-8"></script>
   <script src="constructors.js" charset="utf-8"></script>
+  <script src="play.js" charset="utf-8"></script>
+  <script src="templates.js" charset="utf-8"></script>
   <script src="app.js" charset="utf-8"></script>
 </body>
 </html>

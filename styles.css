@@ -1,17 +1,106 @@
-.battle, .buttons {
+.landingPage {
   display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: center;
+  border: 3px solid black;
+  padding: 20px; }
+  .landingPage h1, .landingPage h3 {
+    display: flex;
+    justify-content: center; }
+  .landingPage .confirm {
+    display: flex; }
+  .landingPage button {
+    width: 80px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0; }
+  .landingPage .yes {
+    background-color: #59ac3e; }
+  .landingPage .no {
+    background-color: #bf2424; }
+  .landingPage img {
+    width: 200px; }
+  .landingPage .nidoran {
+    display: flex;
+    justify-content: center; }
+
+.battlefield {
+  width: 80%;
+  margin: 0 auto; }
+  .battlefield h1 {
+    display: flex;
+    justify-content: center; }
+  .battlefield h4 {
+    font-family: Fondamento,cursive;
+    font-size: 30px;
+    display: flex;
+    justify-content: center; }
+
+.battle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center; }
 
-.box img {
+.box {
+  width: 300px; }
+
+article {
+  margin: 10px; }
+
+.box img, .showMatch {
   width: 200px; }
+
+.showMatch {
+  width: 80%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto; }
+  .showMatch img {
+    width: 200px; }
+
+.attackerSlot {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid lightgray;
+  width: 35%; }
+  .attackerSlot img {
+    margin: 0 auto; }
+  .attackerSlot .attackerHealth {
+    margin: 0 auto; }
+
+.defenderSlot {
+  border-bottom: 1px solid lightgray;
+  width: 35%;
+  display: flex;
+  align-self: flex-end;
+  flex-direction: column-reverse; }
+  .defenderSlot img {
+    margin: 0 auto; }
+  .defenderSlot .defenderHealth {
+    margin: 0 auto; }
+
+.buttons {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap; }
+  .buttons button {
+    width: 150px;
+    margin: 5px; }
+
+.battleLog {
+  display: flex;
+  justify-content: center;
+  width: 30%;
+  margin: 0 auto; }
 
 .hidden {
   display: none; }
-
-.landingPage {
-  height: 5000px;
-  background-color: blue;
-  width: 200px;
-  margin-top: 200px; }
 
 /*# sourceMappingURL=styles.css.map */
