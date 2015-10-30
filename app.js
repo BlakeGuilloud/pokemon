@@ -17,6 +17,11 @@ var page = {
       $('.battlefield').removeClass('hidden');
     });
 
+    $('.no').on('click', function(){
+      $('.landingPage').addClass('hidden');
+      $('.adventure').removeClass('hidden');
+    })
+
 
     /////////// APPENDING STYLING //////////
 
@@ -149,33 +154,6 @@ var page = {
       });
 
 
-      ///////////////DEFENDER FIGHTS BACK///////////////
-      var defenderAttack = "";
-      var defenderAttackName = "";
-      $('.move').on('click', function(){
-        var randomMove = Math.floor(Math.random()*10);
-        if(randomMove > 7){
-          defenderAttack = defender.moves.a[2];
-          defenderAttackName = defender.moves.a[0];
-          console.log(defender.moves.a[0]);
-        } else if (randomMove > 5 && randomMove <= 7){
-          defenderAttack = defender.moves.b[2];
-          defenderAttackName = defender.moves.a[0];
-          console.log(defender.moves.b[0]);
-        } else if (randomMove > 3 && randomMove <= 5){
-          defenderAttack = defender.moves.c[2];
-          defenderAttackName = defender.moves.a[0];
-          console.log(defender.moves.c[0]);
-        } else {
-          defenderAttack = defender.moves.d[2];
-          defenderAttackName = defender.moves.a[0];
-          console.log(defender.moves.d[0]);
-        }
-        console.log(defenderAttack);
-        attacker.health = attacker.health - defenderAttack;
-        // $('.battleLog').prepend(attacker.name + " attacked " + defender.name + " their health: " + defender.health);
-        // $('.battleLog').prepend(defender.name + " attacked " + attacker.name + " your health: " + attacker.health);
-      });
 
 
       ///////GAME LOG ////////
@@ -194,6 +172,36 @@ var page = {
         $('.battleLog').html(attacker.name + " uses " + attacker.moves.d[0] + " and increases " + attacker.name + "'s health by " + attacker.moves.d[2] + ".");
       });
       $('.move').on('click', function(){
+
+      });
+
+
+
+      ///////////////DEFENDER FIGHTS BACK///////////////
+
+      $('.move').on('click', function(){
+        var defenderAttack = "";
+        var defenderAttackName = "";
+        var randomMove = Math.floor(Math.random()*10);
+        if(randomMove > 7){
+          defenderAttack = defender.moves.a[2];
+          defenderAttackName = defender.moves.a[0];
+          console.log(defender.moves.a[0]);
+        } else if (randomMove > 5 && randomMove <= 7){
+          defenderAttack = defender.moves.b[2];
+          defenderAttackName = defender.moves.b[0];
+          console.log(defender.moves.b[0]);
+        } else if (randomMove > 3 && randomMove <= 5){
+          defenderAttack = defender.moves.c[2];
+          defenderAttackName = defender.moves.c[0];
+          console.log(defender.moves.c[0]);
+        } else {
+          defenderAttack = defender.moves.d[2];
+          defenderAttackName = defender.moves.d[0];
+          console.log(defender.moves.d[0]);
+        }
+
+        attacker.health = attacker.health - defenderAttack;
         $('.battleLog').append('<br> <br>' + defender.name + " responds with " + defenderAttackName + " and deals " + defenderAttack + " damage.")
         $('.defenderHealth').html(defender.name + "'s "+ "Remaining Health: "+ defender.health);
         $('.attackerHealth').html(attacker.name + "'s " + "Remaining Health: " + attacker.health);
@@ -202,14 +210,16 @@ var page = {
 
 
 
+
       /////////////ENDING THE FIGHT ///////////////////
       $('.move').on('click', function(){
         if(attacker.health <= 0){
           $('.attackerSlot').slideUp(2000);
-          $('.battleLog').html(defender.name + "WINS")
+          $('.battleLog').html("<h1>" + defender.name + " WINS</h1>")
         } else if(defender.health <= 0){
           $('.defenderSlot').slideUp(2000);
-          $('.battleLog').html("<h1>" + attacker.name + " WINS</h1>")
+          $('.battleLog').html("<h1>" + attacker.name + " WINS</h1>");
+          $('.')
         } else {
           return;
         }

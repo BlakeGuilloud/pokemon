@@ -60,7 +60,8 @@ article {
   border: 1px solid black;
   display: flex;
   flex-direction: column;
-  margin: 0 auto; }
+  margin: 0 auto;
+  margin-top: 100px; }
   .showMatch img {
     width: 200px; }
 
@@ -99,6 +100,19 @@ article {
   justify-content: center;
   width: 30%;
   margin: 0 auto; }
+
+.adventure {
+  background-color: #aeb7cd;
+  height: 500px; }
+
+.block {
+  position: absolute;
+  background-color: #abc;
+  left: 100px;
+  top: 100px;
+  width: 90px;
+  height: 90px;
+  margin: 5px; }
 
 .hidden {
   display: none; }
