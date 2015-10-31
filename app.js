@@ -6,16 +6,12 @@ var page = {
   init: function(){
     page.events();
     page.generateRandomPokemon();
-
     page.styling();
-
-
   },
 
   generateRandomPokemon: function(){
       ///////////// RANDOM POKEMON ////////////
-    var mathRandomPokemon = Math.floor(Math.random()*38);
-
+    var mathRandomPokemon = Math.floor(Math.random()*45);
     if(mathRandomPokemon >= 8 && mathRandomPokemon < 12){
       randomPokemon = squirtle;
     } else if (mathRandomPokemon >= 4 && mathRandomPokemon < 7){
@@ -34,6 +30,8 @@ var page = {
       randomPokemon = flareon;
     } else if (mathRandomPokemon >= 34 && mathRandomPokemon < 40){
       randomPokemon = gloom;
+    } else if (mathRandomPokemon >= 40 && mathRandomPokemon < 100){
+      randomPokemon = onix;
     };
     console.log(randomPokemon)
   },
@@ -101,13 +99,20 @@ var page = {
       attacker = mewtwo;
       defender = randomPokemon;
     });
-  
+    $('.onix').on('click', function(){
+      attacker = onix;
+      defender = randomPokemon;
+    });
+
 
     $('article').on('click', function(){
       $('.battlefield').addClass('hidden');
       $('.showMatch').removeClass('hidden');
       $('.attackerSlot').prepend(attacker.thumbnail);
+      $('.attackerSlot').prepend(attacker.type.element);
       $('.defenderSlot').prepend(defender.thumbnail);
+      $('.defenderSlot').prepend(defender.type.element);
+
     });
     $('article').on('click', function(){
       $('.a').html(attacker.moves.a[0]);
@@ -123,28 +128,65 @@ var page = {
 
     //////////// ADJUSTING ADVANTAGE OF POKEMON.TYPE ////////////
     $('article').on('click', function(){
+/////////// FIRE //////////////////
       if(attacker.type.name === 'Fire' && defender.type.name === 'Water'){
         attacker.moves.b[2] = attacker.moves.b[2] / 2;
+        attacker.moves.c[2] = attacker.moves.c[2] / 2;
         defender.moves.b[2] = defender.moves.b[2] * 2;
+        defender.moves.c[2] = defender.moves.c[2] * 2;
       } else if(attacker.type.name === 'Fire' && defender.type.name === 'Grass'){
         attacker.moves.b[2] = attacker.moves.b[2] * 2;
+        attacker.moves.c[2] = attacker.moves.c[2] * 2;
         defender.moves.b[2] = defender.moves.b[2] / 2;
-      } else if(attacker.type.name === 'Water' && defender.type.name === 'Fire'){
+        defender.moves.c[2] = defender.moves.c[2] / 2;
+      } else if(attacker.type.name === 'Fire' && defender.type.name === 'Rock'){
+        attacker.moves.b[2] = attacker.moves.b[2] / 2;
+        attacker.moves.c[2] = attacker.moves.c[2] / 2;
+        defender.moves.b[2] = defender.moves.b[2] * 1.4;
+        defender.moves.c[2] = defender.moves.c[2] * 1.4;
+      }
+/////////// WATER //////////////////
+        else if(attacker.type.name === 'Water' && defender.type.name === 'Fire'){
         attacker.moves.b[2] = attacker.moves.b[2] * 2;
+        attacker.moves.c[2] = attacker.moves.c[2] * 2;
         defender.moves.b[2] = defender.moves.b[2] / 2;
+        defender.moves.c[2] = defender.moves.c[2] / 2;
       } else if(attacker.type.name === 'Water' && defender.type.name === 'Grass'){
         attacker.moves.b[2] = attacker.moves.b[2] / 2;
+        attacker.moves.c[2] = attacker.moves.c[2] / 2;
         defender.moves.b[2] = defender.moves.b[2] * 2;
-      } else if(attacker.type.name === 'Grass' && defender.type.name === 'Water'){
+        defender.moves.c[2] = defender.moves.c[2] * 2;
+      } else if(attacker.type.name === 'Water' && defender.type.name === 'Rock'){
         attacker.moves.b[2] = attacker.moves.b[2] * 2;
+        attacker.moves.c[2] = attacker.moves.c[2] * 2;
         defender.moves.b[2] = defender.moves.b[2] / 2;
+        defender.moves.c[2] = defender.moves.c[2] / 2;
+      }
+/////////// GRASS //////////////////
+        else if(attacker.type.name === 'Grass' && defender.type.name === 'Water'){
+        attacker.moves.b[2] = attacker.moves.b[2] * 2;
+        attacker.moves.c[2] = attacker.moves.c[2] * 2;
+        defender.moves.b[2] = defender.moves.b[2] / 2;
+        defender.moves.c[2] = defender.moves.c[2] / 2;
       } else if(attacker.type.name === 'Grass' && defender.type.name === 'Fire'){
         attacker.moves.b[2] = attacker.moves.b[2] / 2;
+        attacker.moves.c[2] = attacker.moves.c[2] / 2;
         defender.moves.b[2] = defender.moves.b[2] * 2;
-      } else if(attacker.type.name === 'Ghost' && defender.type.name != 'Psychic'){
+        attacker.moves.c[2] = attacker.moves.c[2] * 2;
+      } else if(attacker.type.name === 'Grass' && defender.type.name === 'Rock'){
         attacker.moves.b[2] = attacker.moves.b[2] * 2;
-        defender.moves.b[2] = defender.moves.b[2];
-      } else if(attacker.type === defender.type){
+        attacker.moves.c[2] = attacker.moves.c[2] * 2;
+        defender.moves.b[2] = defender.moves.b[2] / 2;
+        attacker.moves.c[2] = attacker.moves.c[2] / 2;
+      }
+/////////// GHOST //////////////////
+        else if(attacker.type.name === 'Ghost' && defender.type.name != 'Psychic'){
+        attacker.moves.b[2] = attacker.moves.b[2] * 1.5;
+        attacker.moves.c[2] = attacker.moves.c[2] * 1.5;
+        defender.moves.b[2] = defender.moves.b[2] / 1.5;
+      }
+/////////// SAME //////////////////
+        else if(attacker.type === defender.type){
         attacker.moves.b[2] = attacker.moves.b[2];
         defender.moves.b[2] = defender.moves.b[2];
       }
@@ -167,6 +209,16 @@ var page = {
 
 
     //////////// ATTACKER VS DEFENDER CLICKS/////////////
+      var evadeMove = function(){
+      if(attacker.moves.d[1] === "evade"){
+        defender.moves.a[2] = defender.moves.a[2] - attacker.moves.d[2];
+        defender.moves.b[2] = defender.moves.b[2] - attacker.moves.d[2];
+        defender.moves.c[2] = defender.moves.c[2] - attacker.moves.d[2];
+      } else if (attack.moves.d[1] === "defend"){
+        attacker.health = attacker.health + attacker.moves.d[2];
+      };
+    }
+
       $('.a').on('click', function(){
         defender.health = defender.health - attacker.moves.a[2]
       });
@@ -174,11 +226,10 @@ var page = {
         defender.health = defender.health - attacker.moves.b[2]
       });
       $('.c').on('click', function(){
-        defender.moves.a[2] = defender.moves.a[2] - attacker.moves.c[2];
-        defender.moves.b[2] = defender.moves.b[2] - attacker.moves.c[2];
+        defender.health = defender.health - attacker.moves.c[2];
       });
       $('.d').on('click', function(){
-        attacker.health = attacker.health + attacker.moves.d[2];
+        evadeMove;
       });
 
 
@@ -190,10 +241,10 @@ var page = {
         $('.battleLog').html(attacker.name + " attacks " + defender.name + " with " + attacker.moves.a[0] + " for " + attacker.moves.a[2] + " damage.");
       });
       $('.b').on('click', function(){
-        $('.battleLog').html(attacker.name + " uses special attack on " + defender.name + " with " + attacker.moves.b[0] + " for " + attacker.moves.b[2] + " damage.");
+        $('.battleLog').html(attacker.name + " uses special attack  on " + defender.name + " with " + attacker.moves.b[0] + " for " + attacker.moves.b[2] + " damage.");
       });
       $('.c').on('click', function(){
-        $('.battleLog').html(attacker.name + " uses " + attacker.moves.c[0] + " and decreases " + defender.name + "'s damage by " + attacker.moves.c[2] + ".");
+        $('.battleLog').html(attacker.name + " uses spcial attack on " + defender.name + " with " + attacker.moves.c[0] + " for " + attacker.moves.c[2] + " damage.");
       });
       $('.d').on('click', function(){
         $('.battleLog').html(attacker.name + " uses " + attacker.moves.d[0] + " and increases " + attacker.name + "'s health by " + attacker.moves.d[2] + ".");
@@ -210,22 +261,15 @@ var page = {
         var defenderAttack = "";
         var defenderAttackName = "";
         var randomMove = Math.floor(Math.random()*10);
-        if(randomMove > 7){
+        if(randomMove >= 6){
           defenderAttack = defender.moves.a[2];
           defenderAttackName = defender.moves.a[0];
-          console.log(defender.moves.a[0]);
-        } else if (randomMove > 5 && randomMove <= 7){
+        } else if (randomMove > 3 && randomMove <= 5){
           defenderAttack = defender.moves.b[2];
           defenderAttackName = defender.moves.b[0];
-          console.log(defender.moves.b[0]);
-        } else if (randomMove > 3 && randomMove <= 5){
+        } else if (randomMove >= 0  && randomMove <= 3){
           defenderAttack = defender.moves.c[2];
           defenderAttackName = defender.moves.c[0];
-          console.log(defender.moves.c[0]);
-        } else {
-          defenderAttack = defender.moves.d[2];
-          defenderAttackName = defender.moves.d[0];
-          console.log(defender.moves.d[0]);
         }
 
         attacker.health = attacker.health - defenderAttack;

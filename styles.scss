@@ -1,3 +1,4 @@
+
 .landingPage{
   display: flex;
   flex-direction: column;
@@ -80,11 +81,9 @@ article{
   margin: 0 auto;
   margin-top: 100px;
 
-  img {
-   width: 200px;
- }
 
 }
+
 .attackerSlot{
   display: flex;
   flex-direction: column;
@@ -96,6 +95,10 @@ article{
   .attackerHealth{
     margin: 0 auto;
   }
+}
+aside{
+  display: flex;
+  align-self: flex-end;
 }
 .defenderSlot{
   border-bottom: 1px solid lightgray;
@@ -109,7 +112,12 @@ article{
   .defenderHealth{
     margin: 0 auto;
   }
+  aside{
+    display: flex;
+    align-self: flex-start;
+  }
 }
+
 .buttons{
   width: 100%;
   margin: 0;

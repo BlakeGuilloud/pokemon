@@ -62,8 +62,6 @@ article {
   flex-direction: column;
   margin: 0 auto;
   margin-top: 100px; }
-  .showMatch img {
-    width: 200px; }
 
 .attackerSlot {
   display: flex;
@@ -75,6 +73,10 @@ article {
   .attackerSlot .attackerHealth {
     margin: 0 auto; }
 
+aside {
+  display: flex;
+  align-self: flex-end; }
+
 .defenderSlot {
   border-bottom: 1px solid lightgray;
   width: 35%;
@@ -85,6 +87,9 @@ article {
     margin: 0 auto; }
   .defenderSlot .defenderHealth {
     margin: 0 auto; }
+  .defenderSlot aside {
+    display: flex;
+    align-self: flex-start; }
 
 .buttons {
   width: 100%;
