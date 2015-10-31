@@ -41,7 +41,7 @@ var nightshade = ['Nightshade', 'attack', 50];
 var thundershock = ['Thundershock', 'attack', 30];
 
           ///////EVADE C MOVES/////////
-var sandattack = ['Sand Attack', 'evade', 10];
+var sandattack = ['Sand Attack', 'evade', 3];
 var tailwhip = ['Tail Whip', 'evade', 5];
 
           ////////DEFENSIVE D MOVES///////
