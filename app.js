@@ -144,6 +144,11 @@ var page = {
         attacker.moves.c[2] = attacker.moves.c[2] / 2;
         defender.moves.b[2] = defender.moves.b[2] * 1.4;
         defender.moves.c[2] = defender.moves.c[2] * 1.4;
+      } else if(attacker.type.name === 'Fire' && defender.type.name === 'Psychic'){
+        attacker.moves.b[2] = attacker.moves.b[2] / 1.5;
+        attacker.moves.c[2] = attacker.moves.c[2] / 1.2;
+        defender.moves.b[2] = defender.moves.b[2] * 1.4;
+        defender.moves.c[2] = defender.moves.c[2] * 1.4;
       }
 /////////// WATER //////////////////
         else if(attacker.type.name === 'Water' && defender.type.name === 'Fire'){
@@ -172,12 +177,12 @@ var page = {
         attacker.moves.b[2] = attacker.moves.b[2] / 2;
         attacker.moves.c[2] = attacker.moves.c[2] / 2;
         defender.moves.b[2] = defender.moves.b[2] * 2;
-        attacker.moves.c[2] = attacker.moves.c[2] * 2;
+        defender.moves.c[2] = defender.moves.c[2] * 2;
       } else if(attacker.type.name === 'Grass' && defender.type.name === 'Rock'){
         attacker.moves.b[2] = attacker.moves.b[2] * 2;
         attacker.moves.c[2] = attacker.moves.c[2] * 2;
         defender.moves.b[2] = defender.moves.b[2] / 2;
-        attacker.moves.c[2] = attacker.moves.c[2] / 2;
+        defender.moves.c[2] = defender.moves.c[2] / 2;
       }
 /////////// GHOST //////////////////
         else if(attacker.type.name === 'Ghost' && defender.type.name != 'Psychic'){
@@ -289,18 +294,11 @@ var page = {
           $('.battleLog').html("<h1>" + defender.name + " WINS</h1>");
         } else if(defender.health <= 0){
           $('.defenderSlot').slideUp(2000);
-          $('.playAgain').slideDown(2000);
           $('.battleLog').html("<h1>" + attacker.name + " WINS</h1>");
           $('.')
         } else {
           return;
         }
-      });
-
-      //////////// RESTART NEW FIGHT ////////////
-      $('.playAgain').on('click', function(){
-        $('.battlefield').removeClass('hidden');
-        $('.showMatch').addClass('hidden');
       });
 
 
