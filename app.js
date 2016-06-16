@@ -1,130 +1,64 @@
 $(document).ready(function(){
   page.init();
 });
-var randomPokemon = "";
-var page = {
+let randomPokemon;
+const page = {
   init: function(){
     page.events();
-    page.generateRandomPokemon();
     page.styling();
-  },
-
-  generateRandomPokemon: function(){
-      ///////////// RANDOM POKEMON ////////////
-    var mathRandomPokemon = Math.floor(Math.random()*45);
-    if(mathRandomPokemon >= 8 && mathRandomPokemon < 12){
-      randomPokemon = squirtle;
-    } else if (mathRandomPokemon >= 4 && mathRandomPokemon < 7){
-      randomPokemon = bulbasaur;
-    } else if (mathRandomPokemon >= 0 && mathRandomPokemon < 4){
-      randomPokemon = charmander;
-    } else if (mathRandomPokemon >= 12 && mathRandomPokemon < 16){
-      randomPokemon = mewtwo;
-    } else if (mathRandomPokemon >= 16 && mathRandomPokemon < 20){
-      randomPokemon = cubone;
-    } else if (mathRandomPokemon >= 20 && mathRandomPokemon < 24){
-      randomPokemon = pikachu;
-    } else if (mathRandomPokemon >= 24 && mathRandomPokemon < 30){
-      randomPokemon = lapras;
-    } else if (mathRandomPokemon >= 30 && mathRandomPokemon < 34){
-      randomPokemon = flareon;
-    } else if (mathRandomPokemon >= 34 && mathRandomPokemon < 40){
-      randomPokemon = gloom;
-    } else if (mathRandomPokemon >= 40 && mathRandomPokemon < 100){
-      randomPokemon = onix;
-    };
-    console.log(randomPokemon)
   },
 
   styling: function(){
 
-    ////////////// LANDING PAGE //////////////////
-    $('.yes').on('click', function(){
-      $('.landingPage').addClass('hidden');
-      $('.battlefield').removeClass('hidden');
-    });
-
-    $('.no').on('click', function(){
-      $('.landingPage').addClass('hidden');
-      $('.adventure').removeClass('hidden');
-    })
-
-
     /////////// APPENDING STYLING //////////
-
-    _.each(pokemonArray, function(currVal){
-      $('.battle').append('<article class = '
-      + currVal.key + '>'
-      + currVal.thumbnail + '<h4>'
-      + currVal.name + '</h4>' + '</article>')
+    _.each(pokemonArray, function(currVal) {
+        $(`.battle`).append(`<article class="selectPokemon" id=${currVal.number}>${currVal.thumbnail}<h4>${currVal.name}</h4></article>`);
     });
 
-
+    ///////////// RANDOM POKEMON ////////////
+    randomPokemon = pokemonArray[Math.floor(Math.random() * pokemonArray.length)];
 
     //////////// SELECTING POKEMON ///////////
-
-    $('.charmander').on('click', function(){
-      attacker = charmander;
-      defender = randomPokemon;
-    });
-    $('.squirtle').on('click', function(){
-      attacker = squirtle;
-      defender = randomPokemon;
-    });
-    $('.bulbasaur').on('click', function(){
-      attacker = bulbasaur;
-      defender = randomPokemon;
-    });
-    $('.lapras').on('click', function(){
-      attacker = lapras;
-      defender = randomPokemon;
-    });
-    $('.gloom').on('click', function(){
-      attacker = gloom;
-      defender = randomPokemon;
-    });
-    $('.cubone').on('click', function(){
-      attacker = cubone;
-      defender = randomPokemon;
-    });
-    $('.pikachu').on('click', function(){
-      attacker = pikachu;
-      defender = randomPokemon;
-    });
-    $('.flareon').on('click', function(){
-      attacker = flareon;
-      defender = randomPokemon;
-    });
-    $('.mewtwo').on('click', function(){
-      attacker = mewtwo;
-      defender = randomPokemon;
-    });
-    $('.onix').on('click', function(){
-      attacker = onix;
-      defender = randomPokemon;
+    $('.selectPokemon').on('click', (event) => {
+        getAttacker();
+        getDefender();
+        initiateBattle();
+        prepareBattleField();
+        displayMoves();
+        displayHealth();
     });
 
+    function getAttacker() {
+        attacker = pokemonArray[event.currentTarget.id - 1];
+    }
 
-    $('article').on('click', function(){
-      $('.battlefield').addClass('hidden');
-      $('.showMatch').removeClass('hidden');
-      $('.attackerSlot').prepend(attacker.thumbnail);
-      $('.attackerSlot').prepend(attacker.type.element);
-      $('.defenderSlot').prepend(defender.thumbnail);
-      $('.defenderSlot').prepend(defender.type.element);
+    function getDefender() {
+        defender = randomPokemon;
+    }
 
-    });
-    $('article').on('click', function(){
-      $('.a').html(attacker.moves.a[0]);
-      $('.b').html(attacker.moves.b[0]);
-      $('.c').html(attacker.moves.c[0]);
-      $('.d').html(attacker.moves.d[0]);
-      $('.defenderHealth').html(defender.name + "'s "+ "Remaining Health: "+ defender.health);
-      $('.attackerHealth').html(attacker.name + "'s " + "Remaining Health: " + attacker.health);
-    })
+    function initiateBattle() {
+        $('.battlefield').addClass('hidden');
+        $('.showMatch').removeClass('hidden');
+    }
 
+    function prepareBattleField() {
+        $('.attackerSlot').prepend(attacker.thumbnail);
+        $('.attackerSlot').prepend(attacker.type.element);
+        $('.defenderSlot').prepend(defender.thumbnail);
+        $('.defenderSlot').prepend(defender.type.element);
+    }
 
+    function displayMoves() {
+        $('.a').html(attacker.moves.a[0]);
+        $('.b').html(attacker.moves.b[0]);
+        $('.c').html(attacker.moves.c[0]);
+        $('.d').html(attacker.moves.d[0]);
+    }
 
+    function displayHealth() {
+        $('.defenderHealth').html(defender.name + "'s "+ "Remaining Health: "+ defender.health);
+        $('.attackerHealth').html(attacker.name + "'s " + "Remaining Health: " + attacker.health);
+    }
 
     //////////// ADJUSTING ADVANTAGE OF POKEMON.TYPE ////////////
     $('article').on('click', function(){
@@ -201,15 +135,26 @@ var page = {
 
   events: function(){
 
+    ////////////// LANDING PAGE //////////////////
+    $('.yes').on('click', function(){
+        $('.landingPage').addClass('hidden');
+        $('.battlefield').removeClass('hidden');
+    });
+
+    $('.no').on('click', function(){
+        $('.landingPage').addClass('hidden');
+        $('.adventure').removeClass('hidden');
+    });
 
     //////////////// DETERMINES WHO GOES FIRST //////////
-      $('article').on('click', function(){
-        if(attacker.speed > defender.speed){
-          console.log('You attack first')
-        } else {
-          console.log('Your opponent attacks first')
-        }
-      });
+    $('article').on('click', function(){
+      console.log('attacker', attacker);
+      if(attacker.speed > defender.speed){
+        console.log('You attack first')
+      } else {
+        console.log('Your opponent attacks first')
+      }
+    });
 
 
 
